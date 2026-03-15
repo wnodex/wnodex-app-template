@@ -1,4 +1,4 @@
-# 🚀 wnodex-app-template
+# 🚀 wnodex-template
 
 A robust, type-safe, and **package-manager agnostic** server template built with [wnodex](https://github.com/wnodex/wnodex). This template is designed for modern Node.js applications with a focus on developer experience, automation, and seamless production deployment.
 
