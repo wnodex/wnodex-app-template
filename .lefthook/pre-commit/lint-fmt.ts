@@ -50,18 +50,23 @@ function runCommand(command: string, args: string[]): Promise<void> {
 /**
  * Main execution sequence.
  */
-try {
-  console.log(
-    `🧐 Starting pre-commit linting and formatting sequence with ${pkgManager}...`
-  );
+async function main() {
+  try {
+    console.log(
+      `🧐 Starting pre-commit linting and formatting sequence with ${pkgManager}...`
+    );
 
-  await runCommand(runner, [...runnerArgs, './scripts/lint.ts']);
-  await runCommand(runner, [...runnerArgs, './scripts/fmt.ts']);
+    await runCommand(runner, [...runnerArgs, './scripts/lint.ts']);
+    await runCommand(runner, [...runnerArgs, './scripts/fmt.ts']);
 
-  console.log('✅ Pre-commit sequence completed successfully!');
-} catch (error: unknown) {
-  const message = error instanceof Error ? error.message : String(error);
-  console.error(`💥 Pre-commit sequence failed: ${message}`);
-  /* eslint-disable-next-line unicorn/no-process-exit */
-  process.exit(1);
+    console.log('✅ Pre-commit sequence completed successfully!');
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(`💥 Pre-commit sequence failed: ${message}`);
+    /* eslint-disable-next-line unicorn/no-process-exit */
+    process.exit(1);
+  }
 }
+
+/* eslint-disable-next-line unicorn/prefer-top-level-await */
+main();
